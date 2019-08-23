@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Flowpack\JobQueue\Doctrine\Queue;
 
 /*
@@ -219,6 +221,7 @@ class DoctrineQueue implements QueueInterface
 
     /**
      * @inheritdoc
+     * @throws DBALException
      */
     public function abort(string $messageId): void
     {
@@ -228,6 +231,7 @@ class DoctrineQueue implements QueueInterface
     /**
      * @inheritdoc
      * @throws InvalidArgumentException
+     * @throws DBALException
      */
     public function finish(string $messageId): bool
     {
@@ -252,6 +256,7 @@ class DoctrineQueue implements QueueInterface
 
     /**
      * @inheritdoc
+     * @throws DBALException
      */
     public function countReady(): int
     {
@@ -260,6 +265,7 @@ class DoctrineQueue implements QueueInterface
 
     /**
      * @inheritdoc
+     * @throws DBALException
      */
     public function countReserved(): int
     {
@@ -268,6 +274,7 @@ class DoctrineQueue implements QueueInterface
 
     /**
      * @inheritdoc
+     * @throws DBALException
      */
     public function countFailed(): int
     {
@@ -296,6 +303,7 @@ class DoctrineQueue implements QueueInterface
     /**
      * @param array $options
      * @return string
+     * @throws DBALException
      */
     protected function resolveScheduledQueryPart(array $options): string
     {
@@ -314,6 +322,7 @@ class DoctrineQueue implements QueueInterface
 
     /**
      * @return string
+     * @throws DBALException
      */
     protected function getScheduledQueryConstraint(): string
     {
