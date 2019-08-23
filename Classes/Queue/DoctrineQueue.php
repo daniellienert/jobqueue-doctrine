@@ -140,7 +140,7 @@ class DoctrineQueue implements QueueInterface
         } else {
             $numberOfAffectedRows = $this->connection->executeUpdate("INSERT INTO {$this->connection->quoteIdentifier($this->tableName)} (payload, state, scheduled) VALUES (:payload, 'ready', {$this->resolveScheduledQueryPart($options)})", ['payload' => json_encode($payload)]);
             if ($numberOfAffectedRows !== 1) {
-                return null;
+                return '';
             }
             return (string)$this->connection->lastInsertId();
         }
